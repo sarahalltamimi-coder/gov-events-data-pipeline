@@ -46,7 +46,7 @@ pipeline_dag.py ..... airflow dag that runs the 4 steps in this order.
 
 ## How to run
 
-Easiest way: open `project.ipynb` in google colab, upload the 5 .py files
+Easiest way: open `Public_Sector_Event_2026.ipynb` in google colab, upload the 5 .py files
 and the csv from the files panel, then Run all. The notebook in this repo
 already contains the outputs of a full run so you can read the results
 without running anything.
