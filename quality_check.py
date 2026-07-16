@@ -140,7 +140,7 @@ def emit_lineage(passed, row_count):
 
 
 def main():
-    print("---- Deliverable 5: quality gate ----")
+    print("---- quality gate ----")
 
     df = load_and_profile()
     passed = quality_checks(df)
