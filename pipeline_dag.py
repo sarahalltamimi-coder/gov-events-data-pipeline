@@ -1,4 +1,3 @@
-# Deliverable 4
 # airflow dag that runs the whole pipeline in order:
 # ingestion -> lakehouse -> quality gate -> rag
 
@@ -30,8 +29,6 @@ TASKS = [
     ("rag", rag_pipeline.main),
 ]
 
-
-# the airflow dag (works if airflow is installed)
 try:
     from airflow import DAG
     from airflow.operators.python import PythonOperator
@@ -56,7 +53,6 @@ except ImportError:
 
 
 def run_without_airflow():
-    # runs the same tasks in the same order, useful if airflow is not installed
     for name, fn in TASKS:
         print(f"\n########## task: {name} ##########")
         logger.info(f"starting task {name}")
