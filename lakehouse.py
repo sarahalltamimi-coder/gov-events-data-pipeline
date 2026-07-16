@@ -47,7 +47,7 @@ def get_spark():
 
 
 def main():
-    print("---- Deliverable 2: lakehouse ----")
+    print("---- lakehouse ----")
 
     # start clean every run
     if os.path.exists("data/delta"):
