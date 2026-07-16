@@ -1,6 +1,4 @@
-# Deliverable 1
 # kafka producer + consumer with schema validation
-# if kafka is not running it uses a simple mock instead so the code still works
 
 import json
 import logging
@@ -76,7 +74,6 @@ class EventSchema(BaseModel):
         return v.strip()
 
 
-# simple mock kafka (a list of messages) used when no real broker is running
 class MockKafka:
     def __init__(self):
         self.messages = []
@@ -113,7 +110,6 @@ def validate_messages(messages):
 
 
 def kafka_is_up():
-    # quick 1 second check so we dont wait a long time when kafka is not running
     s = socket.socket()
     s.settimeout(1)
     try:
