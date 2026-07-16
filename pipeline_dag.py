@@ -61,7 +61,7 @@ def run_without_airflow():
 
 
 def main():
-    print("---- Deliverable 4: orchestration ----")
+    print("---- orchestration ----")
     if HAS_AIRFLOW:
         logger.info("airflow found, running the dag with dag.test()")
         dag.test()
