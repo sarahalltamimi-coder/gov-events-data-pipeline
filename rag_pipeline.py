@@ -1,4 +1,3 @@
-# Deliverable 3
 # rag pipeline: chunking -> embeddings -> vector index -> hybrid search -> reranking
 
 import re
@@ -27,7 +26,6 @@ COLS = {
 
 
 def make_documents():
-    # every event in the csv becomes one text document
     df = pd.read_csv(CSV_FILE, encoding="utf-8-sig", dtype=str)
     df = df.rename(columns=COLS)
     df = df.drop_duplicates(subset=["request_id"])
@@ -74,7 +72,6 @@ def build_vector_index(chunks):
 
 
 def bm25_search(bm25, chunks, query, top_k=6):
-    # keyword search, good for exact words like city names and request numbers
     scores = bm25.get_scores(query.lower().split())
     ranked = sorted(enumerate(scores), key=lambda x: x[1], reverse=True)
     return [chunks[i] for i, s in ranked[:top_k]]
@@ -96,7 +93,6 @@ def hybrid_search(vector_hits, bm25_hits, top_k=6):
 
 
 def rerank(query, candidates, top_k=3):
-    # the cross encoder looks at query + document together so its more accurate
     model = CrossEncoder("cross-encoder/ms-marco-MiniLM-L-6-v2")
     pairs = [(query, c["text"]) for c in candidates]
     scores = model.predict(pairs)
@@ -121,7 +117,7 @@ def evaluate(query, docs, model):
 
 
 def main():
-    print("---- Deliverable 3: rag pipeline ----")
+    print("---- rag pipeline ----")
 
     docs = make_documents()
     chunks = chunk_documents(docs)
