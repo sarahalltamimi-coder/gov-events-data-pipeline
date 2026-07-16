@@ -1,8 +1,4 @@
-# Final Project - Government Events Data Pipeline
-
-This is my final project for the modern data engineering course.
-The data is a csv file of Saudi public sector events for 2026 (601 events with the
-entity name, event type, title, dates, venue, city and request number).
+# Public Sector Events Q2-2026
 
 ## Deliverables
 
