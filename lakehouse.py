@@ -1,4 +1,3 @@
-# Deliverable 2
 # delta lakehouse with bronze / silver / gold + MERGE + schema enforcement
 
 import os
@@ -43,8 +42,6 @@ def get_spark():
     )
     spark = configure_spark_with_delta_pip(builder).getOrCreate()
     spark.sparkContext.setLogLevel("ERROR")
-    # set it again here because getOrCreate can return an old session
-    # that ignores the builder configs
     spark.conf.set("spark.sql.shuffle.partitions", "4")
     return spark
 
@@ -59,7 +56,6 @@ def main():
     spark = get_spark()
 
     # ---------- bronze ----------
-    # bronze = the raw data as it is, we take the validated file from deliverable 1
     if os.path.exists("data/validated_events.csv"):
         df = spark.read.csv("data/validated_events.csv", header=True)
     else:
@@ -91,7 +87,6 @@ def main():
 
     # ---------- merge ----------
     # merge = update a row if it exists, insert it if it doesnt (upsert)
-    # example: one event changed its venue + one new event got approved
     some_id = silver_df.first()["request_id"]
     updates = spark.createDataFrame(
         [
@@ -137,8 +132,6 @@ def main():
     logger.success("gold tables saved")
 
     # ---------- schema enforcement (last step) ----------
-    # try to write a row with an extra column, delta should reject it.
-    # note: on windows this rejection can take a while, thats why its last
     print("testing schema enforcement (this write should fail)...")
     bad_schema = StructType(SCHEMA.fields + [StructField("budget", StringType())])
     bad_row = spark.createDataFrame(
