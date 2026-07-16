@@ -149,7 +149,7 @@ def run_real_kafka(messages):
 
 
 def main():
-    print("---- Deliverable 1: ingestion ----")
+    print("---- ingestion ----")
     df = load_data()
     messages = make_messages(df)
     logger.info(f"producing {len(messages)} messages to topic {TOPIC}")
