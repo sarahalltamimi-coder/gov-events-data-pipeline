@@ -1,4 +1,3 @@
-# Deliverable 5
 # quality gate: great expectations checks + openlineage events
 
 import os
@@ -43,7 +42,7 @@ def load_and_profile():
 
 
 def quality_checks(df):
-    # my own checks based on the 6 DAMA dimensions from day 4
+    # Checks based on the 6 dimensions
     results = {}
     dates_start = pd.to_datetime(df["start_date"], format="%m/%d/%Y", errors="coerce")
     dates_end = pd.to_datetime(df["end_date"], format="%m/%d/%Y", errors="coerce")
