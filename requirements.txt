@@ -1,0 +1,13 @@
+pandas
+numpy
+pyarrow
+loguru
+pydantic
+kafka-python
+pyspark==3.5.3
+delta-spark==3.2.0
+chromadb
+sentence-transformers
+rank-bm25
+great_expectations
+openlineage-python
